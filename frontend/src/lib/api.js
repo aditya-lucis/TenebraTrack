@@ -5,14 +5,20 @@ const api = axios.create({
   headers: { 'Content-Type': 'application/json' },
 })
 
-// Attach access token otomatis ke setiap request
+// Inject access token
 api.interceptors.request.use(config => {
-  const token = localStorage.getItem('access_token')
-  if (token) config.headers.Authorization = `Bearer ${token}`
+  // Ambil langsung dari localStorage (avoid circular import dengan store)
+  const raw = localStorage.getItem('tenebra-auth')
+  if (raw) {
+    const { state } = JSON.parse(raw)
+    if (state?.accessToken) {
+      config.headers.Authorization = `Bearer ${state.accessToken}`
+    }
+  }
   return config
 })
 
-// Auto refresh token kalau 401
+// Auto refresh saat 401
 api.interceptors.response.use(
   res => res,
   async err => {
@@ -20,13 +26,23 @@ api.interceptors.response.use(
     if (err.response?.status === 401 && !original._retry) {
       original._retry = true
       try {
-        const refresh = localStorage.getItem('refresh_token')
-        const { data } = await axios.post('/api/auth/token/refresh/', { refresh })
-        localStorage.setItem('access_token', data.access)
+        const raw = localStorage.getItem('tenebra-auth')
+        if (!raw) throw new Error('no token')
+
+        const { state } = JSON.parse(raw)
+        const { data }  = await axios.post('/api/auth/token/refresh/', {
+          refresh: state.refreshToken,
+        })
+
+        // Update store
+        const stored = JSON.parse(localStorage.getItem('tenebra-auth'))
+        stored.state.accessToken = data.access
+        localStorage.setItem('tenebra-auth', JSON.stringify(stored))
+
         original.headers.Authorization = `Bearer ${data.access}`
         return api(original)
       } catch {
-        localStorage.clear()
+        localStorage.removeItem('tenebra-auth')
         window.location.href = '/login'
       }
     }
