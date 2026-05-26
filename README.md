@@ -296,22 +296,6 @@ REDIS_URL=redis://localhost:6379
 ```
 
 ---
-
-# API Modules
-
-Main API endpoints:
-
-```bash
-/api/auth/
-/api/tenants/
-/api/pos/
-/api/invoices/
-/api/expenses/
-/api/inventory/
-/api/crm/
-/api/reports/
-```
-
 ---
 
 # 🛣 Roadmap
