@@ -200,7 +200,7 @@ Built with **Django + Django REST Framework**
 ## Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/tenebratrack.git
+git clone https://github.com/aditya-lucis/TenebraTrack.git
 cd tenebratrack
 ```
 
