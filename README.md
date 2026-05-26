@@ -4,18 +4,6 @@
 
 The idea behind TenebraTrack came from observing how many SMEs operate today: they rely on multiple disconnected tools for daily operations.
 
-For example, a laundry business may use:
-
-- one app for cashier transactions,
-- WhatsApp for customer communication,
-- spreadsheets for expense tracking,
-- manual notes for inventory,
-- separate accounting software for financial reports.
-
-This fragmented workflow creates inefficiencies, duplicate work, and financial blind spots.
-
-TenebraTrack was built to solve that problem.
-
 Instead of forcing SMEs into rigid enterprise ERP systems, TenebraTrack provides a **modular and adaptive Semi-ERP platform**—allowing businesses to centralize their operations in one place while keeping the experience simple and intuitive.
 
 It combines essential operational modules such as:
