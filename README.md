@@ -195,32 +195,6 @@ Built with **Django + Django REST Framework**
 
 ---
 
-# 📁 Project Structure
-
-```bash
-tenebratrack/
-│
-├── frontend/           # React application
-│   ├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── hooks/
-│   └── services/
-│
-├── backend/            # Django application
-│   ├── apps/
-│   ├── tenants/
-│   ├── finance/
-│   ├── inventory/
-│   ├── crm/
-│   ├── reports/
-│   └── api/
-│
-└── README.md
-```
-
----
-
 # 🚀 Installation
 
 ## Clone Repository
